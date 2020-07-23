@@ -6,7 +6,7 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { getMainDefinition } from 'apollo-utilities';
 
-const httpLink = createHttpLink({ uri: process.env.SERVER_URL });
+const httpLink = createHttpLink({ uri: 'http://localhost:8000/graphql' });
 
 const middlewareLink = setContext(() => ({
   headers: {
@@ -41,7 +41,7 @@ const afterwareLink = new ApolloLink((operation, forward) => {
 const httpLinkWithMiddleware = afterwareLink.concat(middlewareLink.concat(httpLink));
 
 export const wsLink = new WebSocketLink({
-  uri: `ws://${process.env.SUB_SERVER}`,
+  uri: 'ws://localhost:8000/subscriptions',
   options: {
     lazy: true,
     reconnect: true,

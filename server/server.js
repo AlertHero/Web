@@ -50,6 +50,7 @@ app.use(async (req, res, next) => {
       req.user = user;
     } catch (err) {
       const refreshToken = req.headers['x-refresh-token'];
+      console.log(models);
       const newTokens = await refreshTokens(token, refreshToken, models, process.env.SECRET, process.env.SECRET2);
       if (newTokens.token && newTokens.refreshToken) {
         res.set('Access-Control-Expose-Headers', 'x-token, x-refresh-token');
