@@ -1,0 +1,253 @@
+@import "themes";
+@import "colors";
+@import "shadows";
+
+  .ant-layout {
+    @include theme($themes) {
+      color: themed('textColor');
+      background: themed('backgroundColor') !important;
+    }
+    height: 100vh;
+  }
+
+  .ant-layout-header.header {
+    z-index: 10;
+    @include z-depth(4);
+    @include theme($themes) {
+      background-color: themed('navColor');
+    }
+    padding: 0px 25px !important;
+    height: 60px;
+
+    .menu_elements-right {
+      display: flex;
+      height: 60px;
+      align-items: center;
+      justify-content: flex-end;
+
+      .codeNav {
+        display: flex;
+        align-items: center;
+
+        .ant-avatar {
+          margin-right: 8px;
+        }
+
+        .code-text {
+          @include theme($themes) {
+            color: themed('textColor') !important;
+          }
+          margin-left: 10px;
+          text-transform: uppercase;
+          margin-bottom: 0px;
+          font-weight: 300;
+        }
+        .code-avatar {
+          @include z-depth(3);          
+          display: flex;
+          align-items: center;
+          margin-left: 10px;
+        }
+        .code-avatar:hover {
+          @include z-depth(6);
+        }
+      }
+      
+      .ant-dropdown-trigger {
+        display: flex;
+        align-items: center;
+        .user-avatar {
+          @include z-depth(3);  
+          margin-left: 16px;
+          margin-right: 8px;
+  
+          img {
+            width: 100%;
+            height: auto;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          }
+        }
+      }
+
+    }
+  }
+
+  .ant-layout-sider {
+  @include theme($themes) {
+    background: themed('siderColor');
+  }
+}
+
+.ant-radio-group {
+  display: flex !important;
+  font-size: 12px;
+  justify-content: center;
+
+  .ant-radio-button-wrapper-checked{
+    span {
+      color: #fff;
+    }
+  }
+
+  span {
+    color: #000;
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+
+}
+
+.ant-radio-button-wrapper-checked.Severe {
+  background-color: #d73435 !important;
+  border-color: #d73435 !important;
+}
+
+.ant-radio-button-wrapper-checked.Severe:hover {
+  background-color: #d73435 !important;
+  border-color: #d73435 !important;
+}
+
+.ant-radio-button-wrapper-checked.Elevated {
+  background-color: #e09a00 !important;
+  border-color: #e09a00 !important;
+}
+
+.ant-radio-button-wrapper-checked.Elevated:hover {
+  background-color: #e09a00 !important;
+  border-color: #e09a00 !important;
+}
+
+.ant-radio-button-wrapper-checked.Low {
+  background-color: #00924c !important;
+  border-color: #00924c !important;
+}
+
+.ant-radio-button-wrapper-checked.Low:hover {
+  background-color: #00924c !important;
+  border-color: #00924c !important;
+}
+
+.ant-modal-title {
+  font-weight: bold !important;
+}
+
+/* Left Navbar */
+.sider_elements {
+  @include theme($themes) {
+    background-color: themed('navColor');
+  }
+  display: flex;
+  align-items: center;
+  height: 56px;
+
+  .title-text {
+    @include theme($themes) {
+      color: themed('textColor');
+    }
+    z-index: 11;
+    font-weight: 300;
+    font-size: 2em;
+    margin: 0;
+    span {
+      color: $primary;
+    }
+  }
+
+  .menu-icon {
+    @include theme($themes) {
+      color: themed('textColor');
+    }
+    font-size: 21px;
+    align-items: center;
+    line-height: 56px !important;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: color .3s;
+  }
+
+  .app-logo {
+    margin: 5px;
+    height: 60%;
+    width: auto;
+    z-index: 11;
+    user-select: none;
+  }
+}
+
+/* Sidebar & Menu */
+.menu_div {
+  @include theme($themes) {
+    background-color: themed('siderColor');
+  }
+
+  .ant-menu, .ant-menu-sub {
+    @include theme($themes) {
+      color: themed('textColor');
+      background-color: themed('siderColor');
+    }
+  }
+  .ant-menu-dark .ant-menu-item, .ant-menu-dark .ant-menu-item-group-title, .ant-menu-dark .ant-menu-item > a {
+    @include theme($themes) {
+      color: themed('textColor');
+    }
+  }
+}
+
+.homeContent {
+  z-index: 3;
+  overflow-x: hidden;
+}
+
+/* App Component Container */
+.app-content {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+
+  .ant-btn-primary {
+    @include theme($themes) {
+      color: themed('textColor');
+      border-color: themed('primaryColor');
+      background-color: themed('primaryColor');
+    }
+  }
+
+  .ant-btn-primary:hover {
+    @include theme($themes) {
+      background-color: themed('buttonHover');
+    }
+  }
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+  @include theme($themes) {
+    color: themed('textColorAlt');
+    background-color: themed('primaryColor');
+  }
+}
+
+.ant-menu.ant-menu .ant-menu-item-selected {
+  @include theme($themes) {
+    color: themed('textColorAlt');
+    background-color: themed('primaryColor');
+  }
+}
+.ant-menu-inline .ant-menu-item:after, .ant-menu-vertical .ant-menu-item:after {
+  border-right: 3px solid #7f0000 !important;
+}
+
+/* Footer */
+.footer {
+  @include theme($themes) {
+    color: themed('textColor');
+    background-color: themed('backgroundColor');
+  }
+  text-align: right;
+  font-weight: 300;
+  padding: 15px 40px;
+}

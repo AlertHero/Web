@@ -1,0 +1,45 @@
+@import "themes";
+@import "shadows";
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.ant-layout-header {
+  @include theme($themes) {
+    background: themed('navColor');
+  }
+
+  .header_elements {
+    display: flex;
+    height: 64px;
+
+    .app-logo {
+      margin: 5px;
+      height: 80%;
+      width: auto;
+      user-select: none;
+    }
+  }
+}
+
+:root .ant-table-column-sorter .anticon-caret-down {
+  font-size: 20px;
+}
+
+:root .ant-table-column-sorter .anticon-caret-up, :root .ant-table-column-sorter .anticon-caret-down {
+  font-size: 20px;
+}
+
+.ant-table-thead > tr > th .anticon-filter, .ant-table-thead > tr > th .ant-table-filter-icon {
+  font-size: 20px;
+}

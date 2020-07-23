@@ -1,0 +1,31 @@
+@import "themes";
+@import "shadows";
+
+.four0four {
+  height: calc(100vh - 120px) !important;
+  .title-text {
+    color: #fff;
+    font-weight: 300;
+    span {
+      color: rgb(214, 6, 0);
+    }
+  }
+
+  .top-404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+    .mainTitle{
+      letter-spacing: 1px;
+      span {
+        font-size: 3em;
+      }
+    }
+  }
+
+  .bottom-404 {
+    display: flex;
+    justify-content: center;
+  }
+}

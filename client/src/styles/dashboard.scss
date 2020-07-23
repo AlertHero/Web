@@ -1,0 +1,178 @@
+@import "themes";
+@import "colors";
+@import "shadows";
+
+.dashboard {
+  @include z-depth(8);
+}
+
+  .tiles {
+    @include theme($themes) {
+      background-color: themed('tileColor');
+    }
+    height: 80px;
+    border: solid;
+    border-width: 1px;
+    @include theme($themes) {
+      color: themed('borderColor');
+  }
+  .Icons {
+    font-size: 17px;
+    margin-right: 5px;
+    @include theme($themes) {
+      color: themed('iconColor');
+    }
+  }
+
+  .tileTitle {
+    @include theme($themes) {
+      color: themed('textColor');
+    }
+
+    padding-top: 10px;
+  }
+
+  .totalStats {
+    font-size: 30px;
+    @include theme($themes) {
+      color: themed('textColor');
+    }
+  }
+  .totalPercent {
+    font-size: 13px;
+    @include theme($themes) {
+      color: themed('textColor');
+    }
+  }
+}
+
+.ant-col-6 {
+  color: white;
+  display: block;
+  padding-bottom: 90px;
+  text-align: center;
+}
+
+.chartHeadWraper {
+  .chartHeader {
+    @include theme($themes) {
+      background-color: themed('tileColor');
+    }
+    height: 50px;
+    padding: 0 15px;
+    padding-top: 5px;
+
+    .rangePick {
+      margin-top: 10px;
+      text-align: right;
+
+      .ant-time-picker .ant-time-picker-large {
+        @include theme($themes) {
+          background-color: themed('headersColor');
+        }
+        position: inherit;
+        right: 5px;
+
+        .ant-time-picker-input {
+          @include theme($themes) {
+            color: themed('textColor');
+          }
+        }
+      }
+    }
+    
+    .chartText {
+      @include theme($themes) {
+        color: themed('textColor');
+      }
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 2em;
+      font-weight: 300;
+      span {
+        font-size: 0.5em;
+      }
+    }
+  }
+}
+
+.chart {
+  @include theme($themes) {
+    background-color: themed('chartColor');
+  }
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 25px;
+}
+
+.messageUpdate {
+  max-width: 100%;
+  .ant-card-head {
+    @include theme($themes) {
+      background-color: themed('headersColor');
+    }
+  }
+
+  .ant-card-head-title {
+    @include theme($themes) {
+      color: themed('textColor');
+    }
+  }
+
+  .ant-card-body {
+    @include theme($themes) {
+      background-color: themed('chartColor');
+    }
+
+    .post {
+      display: flex;
+      margin-top: 1px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      margin-left: auto;
+    }
+    .message-code {
+      width: 20px;
+      height: inherit;
+    }
+    .post-content {
+      @include theme($themes) {
+        background-color: themed('chatBubble');
+      }
+      font-size: 1.0em;
+      font-weight: 300;
+      padding-top: 10px;
+      padding-bottom: 15px;
+      padding-left: 14px;
+      padding-right: 14px;
+      width: 100%;
+    }
+    .post-user {
+      @include theme($themes) {
+        color: themed('textColor');
+      }
+      font-size: 1.2em;
+      .time {
+        font-size: 0.8em;
+        font-weight: 100;
+        color: gray;
+      }
+    }
+    .post-text {
+      @include theme($themes) {
+        color: themed('textColor');
+      }
+    }
+  }
+
+  .moreIcon {
+    @include theme($themes) {
+      color: themed('iconColor');
+    }
+  }
+
+  .ant-card-bordered {
+    border-width: 0px;
+  }
+}

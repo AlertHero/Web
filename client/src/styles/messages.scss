@@ -1,0 +1,294 @@
+@import "themes";
+@import "colors";
+@import "shadows";
+
+.message-container {
+  @include z-depth(8);
+  @include theme($themes) {
+    background-color: themed('chatColor');
+  }
+  max-width: 1200px;
+
+  .ant-card-body {
+    padding: 24px 10px;
+    zoom: 1;
+  }
+
+  .ant-menu-dark.ant-menu-horizontal {
+    @include theme($themes) {
+      border-bottom-color: themed('chatColor');
+    }
+  }
+
+  .msg-menu {
+    @include z-depth(6);  
+    margin-bottom: 15px;
+  }
+  
+  .ant-menu, .ant-menu-sub {
+    @include theme($themes) {
+      color: themed('textColor');
+      background-color: themed('chatBackgroundColor');
+    }
+    display: flex !important;
+    overflow-y: scroll;
+
+    li {
+      font-size: 1.2em;
+      letter-spacing: 1px;
+    }
+
+    .ant-menu-item-selected {
+      @include theme($themes) {
+        color: themed('textColor') !important;
+        border-color: themed('textColor') !important;
+      }
+      background-color: #ffffff00 !important;
+      border-bottom-width: 3px !important;
+      border-bottom-style: solid !important;
+    }
+
+  }
+
+  .ant-menu::-webkit-scrollbar {
+    width: 0 !important;
+  }
+}
+
+.message-header {
+  @include theme($themes) {
+    background-color: themed('chatColor');
+  }
+  padding: 0 !important;
+  box-shadow: inset 0px -4px 2px -2px grey;
+
+  .leftHead {
+    display: flex;
+    height: 64px;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 10px;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgba(255, 255, 255, 0.3);
+
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+
+    .group-subtitle {
+      margin-left: 10px;
+      margin-right: 10px;
+      letter-spacing: 1px;
+      font-weight: 300;
+      @include theme($themes) {
+        color: themed('textColor');
+      }
+    }
+  }
+
+  .message-title {
+    display: flex;
+    height: 64px;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+
+    .code-text {
+      margin-left: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 300;
+      @include theme($themes) {
+        color: themed('textColor');
+      }
+    }
+
+    .code-messageTitle {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .group-text {
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 3em;
+    letter-spacing: 2px;
+    @include theme($themes) {
+      color: themed('textColor');
+    }
+  }
+}
+
+.message-card {
+  .ant-card {
+    @include theme($themes) {
+      color: themed('textColor');
+      background: themed('chatBackgroundColor');
+    }
+
+    .ant-card-body {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      @include theme($themes) {
+        background-color: themed('primaryColor');
+      }
+    }
+
+    .chatList {
+      max-height: 60vh;
+      min-height: 550px;
+      overflow: auto;
+
+      .optimistic {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .message {
+        float: left;
+        width: 100%;
+
+        .post {
+          @include z-depth(3);   
+          display: flex;
+          margin-top: 1px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          margin-left: auto;
+        }
+
+        .message-code {
+          width: 15px;
+          height: inherit;
+        }
+
+        .post-user {
+          @include theme($themes) {
+            color: themed('textColor');
+          }
+          font-size: 1em;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .time {
+            font-size: 0.9em;
+            font-weight: 100;
+            color: gray;
+          }
+        }
+      }
+
+      .message-to {
+        .post-content {
+          @include theme($themes) {
+            background-color: themed('chatBubble');
+          }
+        }
+      }
+
+      .post-content {
+        @include theme($themes) {
+          background-color: themed('chatBubble');
+        }
+        font-size: 1.3em;
+        font-weight: 300;
+        padding-top: 10px;
+        padding-left: 14px;
+        padding-right: 14px;
+        width: 100%;
+      }
+
+    }
+  }
+}
+
+.message-input {
+  @include theme($themes) {
+    color: themed('textColor');
+    background-color: themed('chatBackgroundColor');
+  }
+  padding-top: 40px;
+
+  .message-formRow{
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: space-between;
+
+    .message-code {
+
+    }
+
+    .message-group {
+      width: 70%;
+    }
+  }
+
+  .text-input {
+    width: 85%;
+  }
+
+  .ant-radio-group span {
+    font-weight: 500;
+  }
+
+  .ant-form-item-label {
+    label {
+      @include theme($themes) {
+        color: themed('textColor');
+      }
+      font-size: 1.2em;
+      letter-spacing: 1px;
+    }
+  }
+
+  .ant-select-selection {
+    @include theme($themes) {
+      color: themed('textColor');
+      background-color: themed('inputText');
+    }
+  }
+
+  .ant-select-selection__placeholder {
+    @include theme($themes) {
+      color: themed('placeholder');
+    }
+  }
+
+  textarea {
+    resize: none;
+    font-size: 1em;
+    @include theme($themes) {
+      color: themed('textColor');
+      background-color: themed('inputText');
+    }
+  }
+
+  textarea::-webkit-input-placeholder {
+    @include theme($themes) {
+      color: themed('placeholder');
+    }
+  }
+
+  .ant-col-4 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ant-input:hover {
+    border-color: #0064c7;
+  }
+}
