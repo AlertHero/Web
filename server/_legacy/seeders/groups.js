@@ -3,13 +3,18 @@ const groupsArr = [
   { name: 'Doctors' },
   { name: 'Nurses' },
   { name: 'Non-Medical Staff' },
-  { name: 'Residents' },
-  { name: 'Attendings' },
+];
+
+const subgroupsArr = [
+  { name: 'Residents', groupId: 2 },
+  { name: 'Attendings', groupId: 2 },
 ];
 
 module.exports = async (models) => {
   await models.Group.bulkCreate(groupsArr)
-    .catch((err) => {
+    .then(() => {
+      models.SubGroup.bulkCreate(subgroupsArr);
+    }).catch((err) => {
       console.log('Groups Error:', err);
     });
 };

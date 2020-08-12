@@ -7,7 +7,9 @@ const codesArr = [
 
 module.exports = async (models) => {
   await models.Code.bulkCreate(codesArr)
-    .catch((err) => {
+    .then(() => {
+      
+    }).catch((err) => {
       console.log('Codes Error:', err);
     });
 };

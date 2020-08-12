@@ -10,8 +10,7 @@ const adminsArr = [
     workingNow: false,
     version: 1,
     role: 2,
-  },
-  {
+  }, {
     firstName: 'Fausto',
     lastName: 'Brito',
     phone: '5555555555',
@@ -26,17 +25,15 @@ const adminsArr = [
 ];
 
 module.exports = async (models) => {
-  await models.User.bulkCreate(adminsArr)
-    .then((res) => {
-      res.map((admin, i) => {
-        models.Member.create({
-          userId: (i += 1),
-          role: admin.dataValues.role,
-          groupId: 1,
-        });
+  await models.User.bulkCreate(adminsArr).then((res) => {
+    res.map((admin, i) => {
+      models.Member.create({
+        userId: (i += 1),
+        role: admin.dataValues.role,
+        groupId: 1,
       });
-    })
-    .catch((err) => {
-      console.log('Admins Error:', err);
     });
+  }).catch((err) => {
+    console.log('Admins Error:', err);
+  });
 };
