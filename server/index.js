@@ -21,6 +21,7 @@ const userResolvers = require('./resolvers/user');
 const resolvers = merge(indexResolvers, userResolvers);
 
 const UserAPI = require('./datasources/user');
+const GroupAPI = require('./datasources/group');
 
 // Terminal Colors Themes
 colors.setTheme({
@@ -42,6 +43,7 @@ createStore().then((models) => {
       resolvers,
       dataSources: () => ({
         userAPI: new UserAPI({ store: models }),
+        groupAPI: new GroupAPI({ store: models }),
       }),
       context: async ({ req }) => {
         // Get the user token from the headers.

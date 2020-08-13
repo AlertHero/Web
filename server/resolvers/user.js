@@ -11,9 +11,12 @@ module.exports = {
     },
   },
   User: {
-    isAdmin: async (user, __, {}) => {
+    groups: async ({ id }, __, { dataSources }) => {
+      return await dataSources.userAPI.getGroups(id);
+    },
+    isAdmin: async ({ role }, __, {}) => {
       // Check role and asign admin boolean
-      return user.role == 2 ? true : false;
+      return role == 2 ? true : false;
     },
   },
   Query: {
@@ -32,12 +35,16 @@ module.exports = {
       return userResponse;
     },
     updateUser: requiresAuth.createResolver( async (_, args, { dataSources }) => {
-      const userResponse = await dataSources.userAPI.update(args);
-      return userResponse;
+      return await dataSources.userAPI.update(args);
     }),
-    bulkCreateUsers: requiresAdmin.createResolver( async (_, args, { dataSources }) => {
-      const dbResponse = await dataSources.userAPI.createMultiple(args);
-      return dbResponse;
-    })
+    bulkCreateUsers: requiresAdmin.createResolver( async (_, users, { dataSources }) => {
+      return await dataSources.userAPI.createMultiple(users);;
+    }),
+    createUser: requiresAdmin.createResolver( async (_, args, { dataSources }) => {
+      return await dataSources.userAPI.createUser(args);
+    }),
+    deleteUser: requiresAdmin.createResolver( async(_, { id }, { dataSources }) => {
+      return await dataSources.userAPI.destroyUser(id);
+    }),
   },
 };

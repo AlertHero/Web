@@ -2,7 +2,7 @@ const { DataSource } = require('apollo-datasource');
 const isEmail = require('isemail');
 const bcrypt = require('bcrypt');
 const { createTokens } = require('../utils/auth');
-const { formatErrors } = require('../utils');
+const member = require('../models/member');
 
 class UserAPI extends DataSource {
   constructor({ store }) {
@@ -104,26 +104,22 @@ class UserAPI extends DataSource {
       })
   }
 
-  async createMultiple(args) {
-    const { groups } = args;
-    return this.store.User.bulkCreate(args)
-      .then(res => {
-        res.map(user => {
-          groups.map(groupId => {
-            this.store.Member.create({
-              userId: user.dataValues.id,
-              role: user.dataValues.role,
-              groupId,
-            });
+  async createMultiple({ users }) {
+    users.map(userOg => {
+      const userObj = JSON.parse(JSON.stringify(userOg));
+      return this.store.User.create({
+        ...userObj,
+        version: 1,
+        role: 0,
+      })
+      .then(user => {
+        userObj.groups.map(groupId => {
+          this.store.Member.create({
+            userId: user.dataValues.id,
+            role: user.dataValues.role,
+            groupId,
           });
         });
-        console.log(res)
-        return {
-          code: '',
-          success: true,
-          message: 'Users created',
-          errors: [],
-        };
       })
       .catch(err => {
         return {
@@ -132,7 +128,67 @@ class UserAPI extends DataSource {
           message: 'Users creation failed',
           errors: err,
         };
+      });
+    });
+    return {
+      code: '',
+      success: true,
+      message: 'Users created',
+      errors: [],
+    };
+  }
+
+  async createUser({ user: userArg }) {
+    const userObj = JSON.parse(JSON.stringify(userArg));
+    const user = await this.store.User.create({
+      ...userObj,
+      version: 1,
+      role: 0,
+    })
+      .then((user) => {
+        userObj.groups.map((groupId) => {
+          this.store.Member.create({
+            userId: user.dataValues.id,
+            role: user.dataValues.role,
+            groupId,
+          });
+        });
+        return user;
       })
+      .catch((err) => {
+        return {
+          code: '',
+          success: false,
+          message: 'Users creation failed',
+          errors: err,
+          user: null,
+        };
+      });
+      return {
+        code: '',
+        success: true,
+        message: 'User created',
+        errors: [],
+        user,
+      };
+  }
+
+  async destroyUser(id) {
+    const res = await this.store.User.destroy({ where: { id }, limit: 1 });
+    return {
+      code: '',
+      success: (res == 1) ? true : false,
+      message: (res == 1) ? 'User deleted' : 'User does not exist',
+      errors: (res == 1) ? [] : [res],
+    };
+  }
+
+  async getGroups(id) {
+    const groups = await this.store.Member.findOne({ where: { userId: id } })
+      .then( async (member) => {
+        return await this.store.Group.findAll({ where: { id: member.groupId } });
+      });
+    return groups;
   }
 }
 

@@ -15,11 +15,11 @@ module.exports = async (models) => {
       employed: true,
       workingNow: casual.boolean,
     })
-      .then((user) => {
-        models.Member.create({
+      .then(async (user) => {
+        await models.Member.create({
           userId: user.id,
           role: user.role,
-          groupId: _.random(2, 4),
+          groupId: _.random(2,4),
         });
       })
       .catch((err) => {

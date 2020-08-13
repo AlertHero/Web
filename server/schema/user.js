@@ -13,7 +13,7 @@ module.exports = `
     lastLogin: Date
     latitude: Float
     longitude: Float
-    # group: Group!
+    groups: [Group]
     workingNow: Boolean
     isAdmin: Boolean
   }
@@ -27,11 +27,11 @@ module.exports = `
     login(email: String!, password: String!): UserResponse!
     updateUser(id: ID!, firstName: String, lastName: String, phone: String, 
       title: String, email: String, password: String, employed: Boolean
-    ): UserResponse
+    ): UserResponse!
 
     bulkCreateUsers(users: [UserInput]!): DbResponse!
-    createUser(user: UserInput): UserResponse
-    deleteUser(id: String!): UserResponse!
+    createUser(user: UserInput): UserResponse!
+    deleteUser(id: ID!): DbResponse!
 
     # TBD
     # register(phone: String!): User!

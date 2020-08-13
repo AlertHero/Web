@@ -1,12 +1,3 @@
-const _ = require('lodash');
-
-exports.formatErrors = (e, sequelize) => {
-  if (e instanceof sequelize.ValidationError) {
-    return e.errors.map((x) => _.pick(x, ['path', 'message']));
-  }
-  return [{ path: 'name', message: 'something went wrong' }];
-};
-
 module.exports.paginateResults = ({
   after: cursor,
   pageSize = 20,
