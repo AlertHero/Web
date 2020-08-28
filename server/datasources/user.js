@@ -2,7 +2,6 @@ const { DataSource } = require('apollo-datasource');
 const isEmail = require('isemail');
 const bcrypt = require('bcrypt');
 const { createTokens } = require('../utils/auth');
-const member = require('../models/member');
 
 class UserAPI extends DataSource {
   constructor({ store }) {
@@ -184,9 +183,11 @@ class UserAPI extends DataSource {
   }
 
   async getGroups(id) {
-    const groups = await this.store.Member.findOne({ where: { userId: id } })
-      .then( async (member) => {
-        return await this.store.Group.findAll({ where: { id: member.groupId } });
+    const groups = await this.store.Member.findAll({ where: { userId: id } })
+      .then( async (members) => {
+        return await members.map(async(member)=> {
+          return await this.store.Group.findOne({ where: { id: member.groupId } });
+        })
       });
     return groups;
   }

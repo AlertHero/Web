@@ -6,11 +6,17 @@ module.exports = {
       if (dbresp.user) {
         return 'UserResponse';
       }
+      if (dbresp.group) {
+        return 'GroupResponse';
+      }
 
       return null;
     },
   },
   User: {
+    alerts: async({ id }, __, { dataSources }) => {
+      return await dataSources.alertAPI.getUserAlerts({ id });
+    },
     groups: async ({ id }, __, { dataSources }) => {
       return await dataSources.userAPI.getGroups(id);
     },

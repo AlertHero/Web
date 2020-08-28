@@ -6,6 +6,7 @@ const GroupModel = require('./models/group');
 const AlertModel = require('./models/alert');
 const CodeModel = require('./models/code');
 const MessageModel = require('./models/message');
+const CommentModel = require('./models/comment');
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const { DB, DB_HOST, DB_USER, DB_PASS, DB_TYPE } = process.env;
@@ -48,7 +49,8 @@ module.exports.createStore = async () => {
   const Alert = AlertModel(sequelize, Sequelize);
   const Code = CodeModel(sequelize, Sequelize);
   const Message = MessageModel(sequelize, Sequelize);
+  const Comment = CommentModel(sequelize, Sequelize);
 
-  const Models = { User, Member, Group, Alert, Code, Message, sequelize };
+  const Models = { User, Member, Group, Alert, Code, Message, Comment, sequelize };
   return Models;
 };

@@ -3,7 +3,7 @@ module.exports.paginateResults = ({
   pageSize = 20,
   results,
   // can pass in a function to calculate an item's cursor
-  getCursor = () => null,
+  getCursor = (item) => Buffer.from(item.id.toString()).toString('base64'),
 }) => {
   if (pageSize < 1) return [];
 

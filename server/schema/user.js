@@ -7,7 +7,7 @@ module.exports = `
     title: String!
     email: String!
     profileImage: String
-    alerts: [Alert]!
+    alerts: [Alert]
     token: String
     refreshToken: String
     lastLogin: Date
